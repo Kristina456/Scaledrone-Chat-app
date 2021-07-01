@@ -22,22 +22,21 @@ export default function Login() {
     }
   }, [quote]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!username || !username.replace(/\s/g, "").length) {
+      setError("Please enter your name :)");
+    } else {
+      setError(null);
+      onUserLogin(username, avatar);
+    }
+  };
+
   return (
     <div className="login-page">
       <div className="form-wrapper">
         <div>
-          <form
-            className="form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (!username || !username.replace(/\s/g, "").length) {
-                setError("Please enter your name :)");
-              } else {
-                setError(null);
-                onUserLogin(username, avatar);
-              }
-            }}
-          >
+          <form className="form" onSubmit={handleSubmit}>
             <div className="form-control">
               <div>
                 <label htmlFor="name">Name</label>
